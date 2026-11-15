@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- Warning shortly before a limit runs out. -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <!-- Lets the parent exempt the app from battery optimization so the service is not killed. -->
+  <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+  <!-- Lets the app picker list launchable apps without QUERY_ALL_PACKAGES. -->
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.MAIN" />
+      <category android:name="android.intent.category.LAUNCHER" />
+    </intent>
+  </queries>
+
+  <application>
+    <service
+      android:name="expo.modules.applimiter.LimiterService"
+      android:exported="true"
+      android:label="@string/app_limiter_service_label"
+      android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+      <intent-filter>
+        <action android:name="android.accessibilityservice.AccessibilityService" />
+      </intent-filter>
+      <meta-data
+        android:name="android.accessibilityservice"
+        android:resource="@xml/app_limiter_service" />
+    </service>
+
+    <activity
+      android:name="expo.modules.applimiter.BlockActivity"
+      android:excludeFromRecents="true"
+      android:exported="false"
+      android:launchMode="singleTask"
+      android:screenOrientation="portrait"
+      android:taskAffinity="io.maxapplimiter.block"
+      android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+      android:windowSoftInputMode="adjustResize" />
+
+    <!-- While this admin is active, Android refuses to uninstall the app. -->
+    <receiver
+      android:name="expo.modules.applimiter.AdminReceiver"
+      android:description="@string/app_limiter_admin_description"
+      android:exported="true"
+      android:label="@string/app_limiter_admin_label"
+      android:permission="android.permission.BIND_DEVICE_ADMIN">
+      <meta-data
+        android:name="android.app.device_admin"
+        android:resource="@xml/app_limiter_admin" />
+      <intent-filter>
+        <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

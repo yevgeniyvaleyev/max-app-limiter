@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_limiter_service_label">Max App Limiter: app time limits</string>
+  <string name="app_limiter_service_description">Detects which app is open, counts the time spent in limited apps and blocks them when the daily time is used up. Screen content is not read.</string>
+  <string name="app_limiter_admin_label">Max App Limiter: uninstall protection</string>
+  <string name="app_limiter_admin_description">Prevents Max App Limiter from being uninstalled without the password. It uses no other device admin powers.</string>
+</resources>

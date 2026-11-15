@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Max App Limiter",
+    "slug": "max-app-limiter",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#3B5BDB",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "io.maxapplimiter.app"
+    },
+    "plugins": ["expo-router", "expo-font", ["expo-navigation-bar", { "enforceContrast": false }]],
+    "scheme": "maxapplimiter",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
